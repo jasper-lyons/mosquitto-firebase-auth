@@ -8,8 +8,8 @@ def plugin_init(opts):
     log(LOG_INFO, 'firebase auth: starting up!')
     firebase_admin.initialize_app(credentials.Certificate(os.environ.get(
         'FIREBASE_SERVICE_ACCOUNT_PATH',
-        '.firebase-service-account.json'
-    ))
+        '/etc/mosquitto/.firebase-service-account.json'
+    )))
 
 def unpwd_check(username, password):
     try:
