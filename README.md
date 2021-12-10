@@ -2,6 +2,8 @@
 
 This is an auth plugin for [Mosquitto](https://github.com/eclipse/mosquitto) which uses [mosquito_pyauth](https://github.com/jasper-lyons/mosquitto_pyauth) to load a python module which uses the [firebase_admin](https://github.com/firebase/firebase-admin-python) library to authenticate users submitting messages to mosquitto instance via Google Firebase.
 
+## Getting started.
+
 1. Pull this repository.
 
 2. Build the [mosquitto_pyauth](https://github.com/jasper-lyons/mosquitto_pyauth) image.
@@ -41,3 +43,11 @@ services:
 ```
 docker-compose up
 ```
+
+## Authenticating with mosquitto-firebase-auth
+
+You will need to pass the JWT provided by the firebase authentication api into the `password` of a mqtt connection. You can put what ever information you like into the `username` field, it is unused though it seems handy to identify your users when connecting with it!
+
+## Notes:
+1. We're not handling Access Controll Lists (ACL's) at all in this plugin yet. You'll want to make some changes to the `mosquitto/mosquitto_firebase_auth.py` file if you need them.
+2. I have no idea what `def psk_key_get(identity, hint)` does so it currently does nothing.
